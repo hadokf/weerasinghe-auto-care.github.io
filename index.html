@@ -9,6 +9,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
 
@@ -17,10 +19,8 @@
         body { background-color: var(--dark); color: white; font-family: 'Rajdhani', sans-serif; overflow-x: hidden; }
         .font-orbitron { font-family: 'Orbitron', sans-serif; }
         
-        /* GLASS NAV */
         .glass-nav { background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); }
         
-        /* HEXAGON STYLES */
         .hex-card {
             background: #0f0f11;
             clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
@@ -29,15 +29,11 @@
             position: relative;
             overflow: hidden;
         }
-        /* Hover effect for Services */
         .service-hex:hover { transform: translateY(-8px); border-left-color: var(--orange); background: #16161a; box-shadow: 0 10px 30px -10px rgba(255, 60, 0, 0.3); }
-        
-        /* Hover effect for News */
         .news-hex:hover { transform: translateY(-8px); border-left-color: var(--neon); }
         .news-hex:hover img { transform: scale(1.1); opacity: 1; }
         .news-hex:hover h3 { color: var(--neon); }
 
-        /* ANIMATIONS */
         .glow-text { text-shadow: 0 0 30px rgba(0, 243, 255, 0.5); }
         .bg-hero { background-image: url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); }
     </style>
@@ -103,15 +99,14 @@
 
             <div id="result-area" class="hidden">
                 <div id="report-card" class="bg-white text-black p-8 rounded-xl relative overflow-hidden shadow-2xl border-t-4 border-blue-600">
-                    <i class="fa-solid fa-car-side absolute -bottom-10 -right-10 text-9xl text-gray-100 opacity-50 pointer-events-none"></i>
-
+                    
                     <div class="flex justify-between items-start border-b-2 border-black pb-6 mb-6">
                         <div>
                             <h2 class="text-3xl font-bold font-orbitron tracking-tight">WEERASINGHE AUTO</h2>
                             <p class="text-xs font-bold text-gray-600 uppercase tracking-widest mt-1">Kegalle & Kandy | Hotline: 077-XXXXXXX</p>
                         </div>
                         <div class="text-center bg-gray-100 p-2 rounded-lg">
-                            <img id="qr-code" src="" class="w-20 h-20 mix-blend-multiply">
+                            <div id="qr-code" class="flex items-center justify-center bg-white p-1"></div>
                             <p class="text-[8px] font-bold uppercase mt-1 tracking-widest text-gray-500">Scan for History</p>
                         </div>
                     </div>
@@ -158,74 +153,23 @@
 
     <section id="services" class="py-24 px-6 relative overflow-hidden">
         <i class="fa-solid fa-gears absolute top-20 -left-20 text-[15rem] text-gray-800 opacity-20 fa-spin" style="--fa-animation-duration: 60s;"></i>
-        
         <div class="container mx-auto relative z-10">
             <h2 class="text-4xl md:text-5xl font-orbitron font-bold mb-16 text-center">OUR <span class="text-[#00f3ff]">EXPERTISE</span></h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="hex-card service-hex p-8 group">
                     <i class="fa-solid fa-car-battery text-5xl text-gray-600 group-hover:text-[#ff3c00] mb-6 transition-colors duration-300"></i>
                     <h3 class="text-2xl font-bold font-orbitron mb-3 group-hover:text-white transition">HYBRID & EV</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300">Specialized health analysis, cell balancing, and inverter repair for Prius, Aqua, Vezel & Tesla.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300">Specialized health analysis, cell balancing, and inverter repair.</p>
                 </div>
                 <div class="hex-card service-hex p-8 group">
                     <i class="fa-solid fa-microchip text-5xl text-gray-600 group-hover:text-[#ff3c00] mb-6 transition-colors duration-300"></i>
                     <h3 class="text-2xl font-bold font-orbitron mb-3 group-hover:text-white transition">ADVANCED DIAGNOSTICS</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300">Dealer-level OBD-II scanning, sensor calibration, ECU remapping and complex fault tracing.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300">Dealer-level OBD-II scanning, sensor calibration, ECU remapping.</p>
                 </div>
                 <div class="hex-card service-hex p-8 group">
                     <i class="fa-solid fa-pistons text-5xl text-gray-600 group-hover:text-[#ff3c00] mb-6 transition-colors duration-300"></i>
                     <h3 class="text-2xl font-bold font-orbitron mb-3 group-hover:text-white transition">PRECISION ENGINE</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300">Complete overhauls with micrometer precision, crankshaft grinding, and performance tuning.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="news" class="py-24 px-6 bg-[#0a0a0c] border-t border-gray-900">
-        <div class="container mx-auto">
-            <h2 class="text-4xl md:text-5xl font-orbitron font-bold mb-16 text-center">LATEST <span class="text-[#00f3ff]">NEWS & OFFERS</span></h2>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="hex-card news-hex group">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-full h-full object-cover opacity-60 transition-all duration-500 scale-100">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f11] via-[#0f0f11]/60 to-transparent"></div>
-                        <div class="absolute top-4 left-4 bg-[#00f3ff] text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Offer</div>
-                    </div>
-                    <div class="p-8 relative z-10 -mt-10">
-                        <p class="text-gray-500 text-xs font-bold mb-2 tracking-widest uppercase">Feb 2026</p>
-                        <h3 class="text-xl font-bold font-orbitron mb-4 text-white transition-colors">FREE HYBRID BATTERY SCAN</h3>
-                        <p class="text-gray-400 text-sm mb-6">Get a complimentary state-of-health check for your hybrid battery with every full service booked this month.</p>
-                        <a href="#booking" class="text-[#00f3ff] text-xs font-bold uppercase tracking-widest hover:underline">Book Now <i class="fa-solid fa-arrow-right ml-1"></i></a>
-                    </div>
-                </div>
-
-                <div class="hex-card news-hex group">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1498887960847-2a5e46312788?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-full h-full object-cover opacity-60 transition-all duration-500 scale-100">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f11] via-[#0f0f11]/60 to-transparent"></div>
-                        <div class="absolute top-4 left-4 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">News</div>
-                    </div>
-                    <div class="p-8 relative z-10 -mt-10">
-                        <p class="text-gray-500 text-xs font-bold mb-2 tracking-widest uppercase">Jan 2026</p>
-                        <h3 class="text-xl font-bold font-orbitron mb-4 text-white transition-colors">NEW AI DIAGNOSTIC TOOLS</h3>
-                        <p class="text-gray-400 text-sm mb-6">We have upgraded our workshop with the latest AI-assisted fault detection systems for faster repairs.</p>
-                        <a href="#services" class="text-[#00f3ff] text-xs font-bold uppercase tracking-widest hover:underline">Learn More <i class="fa-solid fa-arrow-right ml-1"></i></a>
-                    </div>
-                </div>
-
-                <div class="hex-card news-hex group">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1635776062360-af423602aff3?q=80&w=2032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-full h-full object-cover opacity-60 transition-all duration-500 scale-100" style="object-position: top;">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f11] via-[#0f0f11]/60 to-transparent"></div>
-                        <div class="absolute top-4 left-4 bg-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Update</div>
-                    </div>
-                    <div class="p-8 relative z-10 -mt-10">
-                        <p class="text-gray-500 text-xs font-bold mb-2 tracking-widest uppercase">Dec 2025</p>
-                        <h3 class="text-xl font-bold font-orbitron mb-4 text-white transition-colors">KANDY BRANCH EXPANSION</h3>
-                        <p class="text-gray-400 text-sm mb-6">Our Kandy facility has been expanded with 3 new dedicated bays for EV repairs.</p>
-                        <a href="#contact" class="text-[#00f3ff] text-xs font-bold uppercase tracking-widest hover:underline">Find Location <i class="fa-solid fa-arrow-right ml-1"></i></a>
-                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300">Complete overhauls with micrometer precision and performance tuning.</p>
                 </div>
             </div>
         </div>
@@ -233,47 +177,24 @@
 
     <section id="booking" class="py-24 relative border-t border-gray-800 overflow-hidden">
         <div class="absolute inset-0 bg-[#00f3ff]/5 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-900/30 via-transparent to-transparent"></div>
-        
         <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
             <div>
                 <h2 class="text-4xl font-orbitron font-bold mb-6 leading-tight">BOOK YOUR <br><span class="text-[#00f3ff]">APPOINTMENT</span></h2>
-                <p class="text-gray-400 mb-8 text-lg font-medium">Skip the queue. Submit your details here, and our system will automatically register your request for priority service.</p>
-                <ul class="space-y-5 text-gray-300">
-                    <li class="flex items-center gap-4"><div class="bg-[#00f3ff]/20 p-2 rounded-full"><i class="fa-solid fa-check text-[#00f3ff]"></i></div> Priority Service Status</li>
-                    <li class="flex items-center gap-4"><div class="bg-[#00f3ff]/20 p-2 rounded-full"><i class="fa-solid fa-shield-halved text-[#00f3ff]"></i></div> Genuine Parts Guarantee</li>
-                    <li class="flex items-center gap-4"><div class="bg-[#00f3ff]/20 p-2 rounded-full"><i class="fa-solid fa-clock text-[#00f3ff]"></i></div> Real-time Online Tracking</li>
-                </ul>
+                <p class="text-gray-400 mb-8 text-lg font-medium">Skip the queue. Submit your details here.</p>
             </div>
-            
             <div class="bg-[#111]/80 backdrop-blur-xl p-8 border-2 border-[#00f3ff]/30 rounded-2xl shadow-[0_0_50px_rgba(0,243,255,0.1)]">
                 <div class="space-y-5">
-                    <div>
-                        <label class="text-xs text-[#00f3ff] uppercase font-bold tracking-widest mb-2 block">Vehicle Number</label>
-                        <input type="text" id="bk-vehicle" placeholder="WP ABC-1234" class="w-full bg-black/50 border-2 border-gray-700 p-4 text-white rounded-xl focus:border-[#00f3ff] outline-none font-bold uppercase tracking-wider transition-all">
-                    </div>
-                    <div>
-                        <label class="text-xs text-gray-500 uppercase font-bold tracking-widest mb-2 block">Your Name</label>
-                        <input type="text" id="bk-name" placeholder="Customer Name" class="w-full bg-black/50 border-2 border-gray-700 p-4 text-white rounded-xl focus:border-[#00f3ff] outline-none transition-all">
-                    </div>
-                    <div>
-                        <label class="text-xs text-gray-500 uppercase font-bold tracking-widest mb-2 block">Contact Phone</label>
-                        <input type="text" id="bk-phone" placeholder="077 123 4567" class="w-full bg-black/50 border-2 border-gray-700 p-4 text-white rounded-xl focus:border-[#00f3ff] outline-none transition-all">
-                    </div>
-                    <div>
-                        <label class="text-xs text-gray-500 uppercase font-bold tracking-widest mb-2 block">Service Required</label>
-                        <select id="bk-service" class="w-full bg-black/50 border-2 border-gray-700 p-4 text-white rounded-xl focus:border-[#00f3ff] outline-none transition-all appearance-none cursor-pointer">
-                            <option value="General Service">General Service & Checkup</option>
-                            <option value="Hybrid Repair">Hybrid/EV Battery Repair</option>
-                            <option value="Engine Issue">Engine Diagnostics/Repair</option>
-                            <option value="Scan Only">Full System Scan</option>
-                            <option value="Other">Other Issue</option>
-                        </select>
-                    </div>
-                    
-                    <button onclick="submitBooking()" id="bk-btn" class="w-full bg-gradient-to-r from-[#00f3ff] to-blue-600 hover:from-white hover:to-white hover:text-black text-black font-black py-5 uppercase transition-all rounded-xl mt-4 text-lg tracking-widest shadow-lg">
-                        CONFIRM BOOKING REQUEST
-                    </button>
-                    <div id="bk-msg" class="text-center text-sm font-bold mt-4 hidden p-3 rounded-lg bg-green-500/20 text-green-400 border border-green-500/30"></div>
+                    <input type="text" id="bk-vehicle" placeholder="WP ABC-1234" class="w-full bg-black/50 border-2 border-gray-700 p-4 text-white rounded-xl focus:border-[#00f3ff] outline-none font-bold uppercase">
+                    <input type="text" id="bk-name" placeholder="Your Name" class="w-full bg-black/50 border-2 border-gray-700 p-4 text-white rounded-xl focus:border-[#00f3ff] outline-none">
+                    <input type="text" id="bk-phone" placeholder="077 123 4567" class="w-full bg-black/50 border-2 border-gray-700 p-4 text-white rounded-xl focus:border-[#00f3ff] outline-none">
+                    <select id="bk-service" class="w-full bg-black/50 border-2 border-gray-700 p-4 text-white rounded-xl focus:border-[#00f3ff] outline-none">
+                        <option value="General Service">General Service</option>
+                        <option value="Hybrid Repair">Hybrid Repair</option>
+                        <option value="Engine Issue">Engine Issue</option>
+                        <option value="Scan Only">Full System Scan</option>
+                    </select>
+                    <button onclick="submitBooking()" id="bk-btn" class="w-full bg-gradient-to-r from-[#00f3ff] to-blue-600 hover:from-white hover:to-white hover:text-black text-black font-black py-5 uppercase transition-all rounded-xl mt-4 text-lg tracking-widest shadow-lg">CONFIRM BOOKING</button>
+                    <div id="bk-msg" class="hidden text-center text-sm font-bold mt-4 p-3 rounded-lg"></div>
                 </div>
             </div>
         </div>
@@ -282,88 +203,37 @@
     <footer id="contact" class="bg-[#050505] pt-20 pb-10 text-center border-t border-gray-900 relative overflow-hidden">
         <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div class="container mx-auto relative z-10">
-            <i class="fa-solid fa-gear text-[#00f3ff] text-5xl mb-6 fa-spin" style="--fa-animation-duration: 10s;"></i>
             <h2 class="text-3xl font-orbitron font-bold text-white mb-2 tracking-wider">WEERASINGHE ENTERPRISE</h2>
             <p class="text-gray-500 text-xs tracking-[0.5em] uppercase mb-10 font-bold">Advanced Automotive Engineering</p>
-            
-            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-                <div class="bg-[#111] p-6 rounded-lg border border-gray-800">
-                    <i class="fa-solid fa-location-dot text-[#00f3ff] text-2xl mb-4"></i>
-                    <h4 class="font-bold uppercase mb-2">Locations</h4>
-                    <p class="text-gray-400 text-sm">No. 123, Kandy Road, Kegalle<br>Branch: Peradeniya Rd, Kandy</p>
-                </div>
-                <div class="bg-[#111] p-6 rounded-lg border border-gray-800">
-                    <i class="fa-solid fa-phone text-[#00f3ff] text-2xl mb-4"></i>
-                    <h4 class="font-bold uppercase mb-2">Contact</h4>
-                    <p class="text-gray-400 text-sm">Hotline: 0766507684 <br>Tel: 0715359244</p>
-                </div>
-                <div class="bg-[#111] p-6 rounded-lg border border-gray-800">
-                    <i class="fa-regular fa-clock text-[#00f3ff] text-2xl mb-4"></i>
-                    <h4 class="font-bold uppercase mb-2">Hours</h4>
-                    <p class="text-gray-400 text-sm">Mon - Sat: 8:30 AM - 6:00 PM<br>Sunday: Closed</p>
-                </div>
-            </div>
-
-            <div class="flex justify-center gap-6 text-gray-500 text-2xl mb-10">
-                <a href="#" class="hover:text-[#00f3ff] hover:scale-125 transition"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#" class="hover:text-[#00f3ff] hover:scale-125 transition"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="#" class="hover:text-[#00f3ff] hover:scale-125 transition"><i class="fa-brands fa-instagram"></i></a>
-            </div>
-            <p class="text-gray-700 text-xs uppercase tracking-widest">© 2026 Weerasinghe Enterprise. All Rights Reserved.</p>
+            <p class="text-gray-700 text-xs uppercase tracking-widest">© 2026 Weerasinghe Enterprise.</p>
         </div>
     </footer>
 
-    <a href="https://wa.me/94766507684" target="_blank" class="fixed bottom-8 right-8 bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center text-4xl shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:scale-110 hover:rotate-12 transition z-50">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
     <script>
-        // ******************************************************
-        // ⚠️ මෙතනට ඔයාගේ GOOGLE SCRIPT LINK එක දාන්න
-        // ******************************************************
+        // *** මෙතනට ඔයාගේ අලුත් LINK එක දාන්න ***
         const API_URL = "https://script.google.com/macros/s/AKfycby5xgqx1-RukHKQh9pfNEYmRp8tu-IS8lIYKHOkd4vhEf4jfvb2d1RausB3rG124d0/exec";
 
-        // 1. AUTO RUN SEARCH
         window.onload = function() {
             const params = new URLSearchParams(window.location.search);
             const search = params.get('search');
             if(search) {
                 document.getElementById('vehicle-input').value = search;
                 checkHistory();
-                // Smooth scroll after a small delay to ensure loading
-                setTimeout(() => {
-                    document.getElementById('track').scrollIntoView({behavior: 'smooth', block: 'start'});
-                }, 500);
+                setTimeout(() => { document.getElementById('track').scrollIntoView({behavior: 'smooth', block: 'start'}); }, 500);
             }
-            
-            // GSAP Animations
             gsap.registerPlugin(ScrollTrigger);
-            
-            gsap.from(".service-hex", {
-                scrollTrigger: { trigger: "#services", start: "top 80%" },
-                y: 80, opacity: 0, stagger: 0.2, duration: 1, ease: "power3.out"
-            });
-
-            // New animation for News cards
-            gsap.from(".news-hex", {
-                scrollTrigger: { trigger: "#news", start: "top 80%" },
-                scale: 0.8, opacity: 0, stagger: 0.2, duration: 1, ease: "back.out(1.7)"
-            });
+            gsap.from(".service-hex", { scrollTrigger: { trigger: "#services", start: "top 80%" }, y: 80, opacity: 0, stagger: 0.2, duration: 1 });
         }
 
-        // 2. CHECK HISTORY
         async function checkHistory() {
             const vNo = document.getElementById('vehicle-input').value;
             const resArea = document.getElementById('result-area');
             const btn = document.querySelector('#track button');
 
             if(!vNo) return alert("Enter Vehicle Number!");
-
-            // Loading state
             btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
             resArea.classList.remove('hidden');
-            resArea.style.opacity = "0.3";
-            resArea.style.filter = "blur(5px)";
+            resArea.style.opacity = "0.5";
 
             try {
                 const res = await fetch(`${API_URL}?vehicle=${vNo}`);
@@ -376,44 +246,40 @@
                     document.getElementById('r-vno').innerText = vNo.toUpperCase();
                     document.getElementById('r-owner').innerText = latest.owner;
                     document.getElementById('r-service').innerText = latest.service;
-                    document.getElementById('r-notes').innerText = latest.notes || "No notes available.";
+                    document.getElementById('r-notes').innerText = latest.notes || "No notes.";
                     document.getElementById('r-date').innerText = "Last Updated: " + latest.date;
 
-                    // Status Style
                     const st = document.getElementById('r-status');
                     st.innerText = latest.status;
-                    if(latest.status === 'DONE') {
-                        st.className = "bg-green-500 text-white px-4 py-2 text-sm font-black rounded-lg shadow-lg transform -rotate-2 border-2 border-green-700";
-                    } else if (latest.status === 'ONGOING') {
-                        st.className = "bg-blue-500 text-white px-4 py-2 text-sm font-black rounded-lg shadow-lg transform -rotate-2 border-2 border-blue-700 animate-pulse";
-                    } else {
-                        st.className = "bg-yellow-400 text-black px-4 py-2 text-sm font-black rounded-lg shadow-sm transform -rotate-2 border-2 border-black";
-                    }
+                    if(latest.status === 'DONE') st.className = "bg-green-500 text-white px-4 py-2 text-sm font-black rounded-lg transform -rotate-2 border-2 border-green-700";
+                    else if(latest.status === 'ONGOING') st.className = "bg-blue-500 text-white px-4 py-2 text-sm font-black rounded-lg transform -rotate-2 border-2 border-blue-700 animate-pulse";
+                    else st.className = "bg-yellow-400 text-black px-4 py-2 text-sm font-black rounded-lg transform -rotate-2 border-2 border-black";
 
-                    // QR Code
+                    // *** NEW QR CODE GENERATION (Local) ***
+                    document.getElementById('qr-code').innerHTML = ""; // Clear old
                     const currentUrl = window.location.href.split('?')[0];
                     const qrLink = `${currentUrl}?search=${vNo.replace(/\s/g, '')}`;
-                    document.getElementById('qr-code').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrLink)}`;
+                    
+                    new QRCode(document.getElementById("qr-code"), {
+                        text: qrLink,
+                        width: 80,
+                        height: 80,
+                        colorDark : "#000000",
+                        colorLight : "#ffffff",
+                        correctLevel : QRCode.CorrectLevel.H
+                    });
 
                     // History
                     const hList = document.getElementById('history-list');
                     if(past.length > 0) {
                         hList.innerHTML = past.map(j => `
                             <div class="flex justify-between items-center border-b border-gray-200 pb-3 border-dashed">
-                                <div>
-                                    <p class="font-bold text-black text-base">${j.service}</p>
-                                    <p class="text-xs text-gray-500">${j.date}</p>
-                                </div>
+                                <div><p class="font-bold text-black text-base">${j.service}</p><p class="text-xs text-gray-500">${j.date}</p></div>
                                 <span class="text-xs font-bold bg-gray-200 text-gray-700 px-3 py-1 rounded-full">${j.status}</span>
-                            </div>
-                        `).join('');
-                    } else {
-                        hList.innerHTML = "<p class='italic text-gray-400 text-center py-4'>No previous service history found.</p>";
-                    }
+                            </div>`).join('');
+                    } else { hList.innerHTML = "<p class='italic text-gray-400 text-center py-4'>No previous history.</p>"; }
                     
-                    // Show result
                     resArea.style.opacity = "1";
-                    resArea.style.filter = "none";
                     resArea.scrollIntoView({behavior: 'smooth', block: 'center'});
 
                 } else {
@@ -422,14 +288,12 @@
                 }
             } catch (e) { 
                 console.error(e); 
-                alert("Connection Error. Please check internet.");
+                alert("Connection Error. Check internet.");
                 resArea.classList.add('hidden');
             }
-            // Reset button
             btn.innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
         }
 
-        // 3. BOOKING SYSTEM
         async function submitBooking() {
             const vNo = document.getElementById('bk-vehicle').value;
             const name = document.getElementById('bk-name').value;
@@ -438,66 +302,46 @@
             const btn = document.getElementById('bk-btn');
             const msg = document.getElementById('bk-msg');
 
-            if(!vNo || !name || !phone) return alert("Please fill all required fields!");
-
-            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> SENDING REQUEST...';
-            btn.disabled = true;
-            btn.classList.add('opacity-70', 'cursor-not-allowed');
-            msg.classList.add('hidden');
+            if(!vNo || !name || !phone) return alert("Fill all fields!");
+            btn.innerText = "SENDING..."; btn.disabled = true;
 
             try {
                 await fetch(API_URL, {
                     method: 'POST',
                     mode: 'no-cors',
-                    body: JSON.stringify({
-                        vehicle: vNo,
-                        owner: name,
-                        service: service,
-                        status: "REQUESTED",
-                        notes: "Contact Phone: " + phone
-                    })
+                    body: JSON.stringify({ vehicle: vNo, owner: name, service: service, status: "REQUESTED", notes: "Phone: " + phone })
                 });
-
-                msg.innerHTML = '<i class="fa-solid fa-circle-check mr-2"></i> BOOKING REQUEST SENT SUCCESSFULY!<br><span class="text-xs font-normal">We will contact you shortly to confirm.</span>';
-                msg.className = "text-center text-sm font-bold mt-4 block p-4 rounded-xl bg-green-500/20 text-green-400 border-2 border-green-500/30";
-                
-                // Clear
-                document.getElementById('bk-vehicle').value = "";
-                document.getElementById('bk-name').value = "";
-                document.getElementById('bk-phone').value = "";
-
+                msg.innerHTML = "BOOKING REQUEST SENT!";
+                msg.className = "block bg-green-500/20 text-green-400 border border-green-500/30 p-3 rounded mt-4";
             } catch (e) {
-                msg.innerText = "❌ Error sending request. Please try again or call hotline.";
-                msg.className = "text-center text-sm mt-4 block p-3 rounded-lg bg-red-500/20 text-red-400 border border-red-500/30";
+                msg.innerText = "Error sending request.";
             }
-            
-            btn.innerHTML = 'CONFIRM BOOKING REQUEST';
-            btn.disabled = false;
-            btn.classList.remove('opacity-70', 'cursor-not-allowed');
+            btn.innerText = "CONFIRM BOOKING"; btn.disabled = false;
         }
 
-        // 4. PDF DOWNLOAD
         function downloadPDF() {
             const element = document.getElementById('report-card');
             const vNo = document.getElementById('vehicle-input').value || "Report";
+            
+            // Generate PDF
             const opt = {
-                margin: [0.5, 0.5],
-                filename: `WeerasingheAuto_Report_${vNo.toUpperCase().replace(/\s/g, '')}.pdf`,
-                image: { type: 'jpeg', quality: 1 },
-                html2canvas: { scale: 3, useCORS: true, logging: false, letterRendering: true },
+                margin: 0.5,
+                filename: `WeerasingheAuto_${vNo}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true }, // CORS enabled
                 jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
             };
             
-            // Change button state during download
             const btn = document.querySelector('#result-area button');
             const oldText = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Generating PDF...';
-            btn.disabled = true;
-
-            html2pdf().set(opt).from(element).save().then(() => {
-                 btn.innerHTML = oldText;
-                 btn.disabled = false;
-            });
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Generating PDF...';
+            
+            // Wait 500ms for QR code to fully render inside canvas
+            setTimeout(() => {
+                html2pdf().set(opt).from(element).save().then(() => {
+                    btn.innerHTML = oldText;
+                });
+            }, 500);
         }
     </script>
 </body>
